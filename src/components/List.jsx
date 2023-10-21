@@ -8,27 +8,11 @@ const List = () => {
   const {
     state: { todos },
     dispatch,
+    clearTodos,
+    EditTodo,
+    changeTodo,
   } = useTodoContext();
 
-  const changeTodo = (e) => {
-    const newState = todos.map((item) => {
-      if (item.id === e) {
-        return {
-          ...item,
-          complete: !item.complete,
-        };
-      }
-      return item;
-    });
-    dispatch({ type: Actions.CHANGE_TODO, payload: newState });
-  };
-
-  const EditTodo = (t) => {
-    dispatch({
-      type: Actions.EDIT_TODO,
-      payload: t,
-    });
-  };
   return (
     <>
       {todos.map((item) => {
@@ -38,7 +22,7 @@ const List = () => {
             className=" flex justify-center w-8/12 mx-auto  rounded-lg my-10 "
           >
             {item.complete ? (
-              <p className=" text-2xl font-bold inline w-3/4 my-auto font-serif ml-4 line-through uppercase  bg-slate-200 rounded-2xl px-5 py-4  ">
+              <p className=" text-2xl font-bold inline w-3/4 my-auto font-serif ml-4 line-through uppercase  bg-green-200 rounded-2xl px-5 py-4  ">
                 {item.title}
               </p>
             ) : (
@@ -86,9 +70,7 @@ const List = () => {
       <div className=" flex justify-center">
         {todos.length < 1 || (
           <button
-            onClick={() => {
-              dispatch({ type: Actions.CLEAR_TODO });
-            }}
+            onClick={clearTodos}
             type="button"
             className=" w-fit bg-red-500 rounded-lg text-white font-bold p-2 text-lg mx-4 my-2 hover:bg-red-700 "
           >
