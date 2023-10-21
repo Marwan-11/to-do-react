@@ -1,31 +1,33 @@
+import { useEffect, useState } from 'react';
 import { useTodoContext } from '../context/UseToDo';
 import * as Actions from '../reducer/Actions';
 
 const Form = () => {
-  const { dispatch, value, setValue, edit, setEdit, bag, state, id, setId } =
-    useTodoContext();
+  const [value, setValue] = useState('');
+  const {
+    dispatch,
+    state: { editing },
+  } = useTodoContext();
+  useEffect(() => {
+    if (editing && editing?.id) {
+      setValue(editing.title);
+    }
+  }, [editing]);
   const handleClick = (e) => {
     e.preventDefault();
+    if (editing && editing?.id) {
+      dispatch({
+        type: Actions.ADD_TODO,
+        payload: { ...editing, title: value },
+      });
+      return;
+    }
+
     const id = new Date().getTime().toString();
     // setId(id + 1);
     const newToDo = { id, title: value, complete: false };
     dispatch({ type: Actions.ADD_TODO, payload: newToDo });
     setValue('');
-  };
-
-  const handleConfirm = (e) => {
-    e.preventDefault();
-    setEdit(!edit);
-    const newTodo = state.map((item) => {
-      if (item.title === value) {
-        return {
-          ...item,
-          title: e,
-        };
-      }
-      return item;
-    });
-    dispatch({ type: Actions.EDIT_TODO, payload: newTodo });
   };
 
   return (
@@ -46,23 +48,13 @@ const Form = () => {
         </div>
 
         <div>
-          {edit ? (
-            <button
-              onClick={handleClick}
-              type="submit"
-              className=" w-fit h-12 pb-2 pt-2 pr-6 pl-5   bg-blue-600 text-white font-bold text-lg hover:bg-blue-800 rounded-r-xl"
-            >
-              Add
-            </button>
-          ) : (
-            <button
-              onClick={() => handleConfirm}
-              type="submit"
-              className=" w-fit h-12 pb-2 pt-2 pr-6 pl-5   bg-blue-600 text-white font-bold text-lg hover:bg-blue-800 rounded-r-xl"
-            >
-              confirm
-            </button>
-          )}
+          <button
+            onClick={handleClick}
+            type="submit"
+            className=" w-fit h-12 pb-2 pt-2 pr-6 pl-5   bg-blue-600 text-white font-bold text-lg hover:bg-blue-800 rounded-r-xl"
+          >
+            {editing && editing?.id ? 'Add' : 'Update'}
+          </button>
         </div>
       </div>
     </form>

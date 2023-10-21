@@ -5,10 +5,13 @@ import { MdDelete, MdDone } from 'react-icons/md';
 import * as Actions from '../reducer/Actions';
 
 const List = () => {
-  const { state, dispatch, setValue, edit, setEdit } = useTodoContext();
+  const {
+    state: { todos },
+    dispatch,
+  } = useTodoContext();
 
   const changeTodo = (e) => {
-    const newState = state.map((item) => {
+    const newState = todos.map((item) => {
       if (item.id === e) {
         return {
           ...item,
@@ -21,14 +24,14 @@ const List = () => {
   };
 
   const EditTodo = (t) => {
-    setEdit(!edit);
-    setValue(t.title);
-    const bag = t.id;
-    console.log(bag);
+    dispatch({
+      type: Actions.EDIT_TODO,
+      payload: t,
+    });
   };
   return (
     <>
-      {state.map((item) => {
+      {todos.map((item) => {
         return (
           <div
             key={item.id}
@@ -64,7 +67,7 @@ const List = () => {
               )}
               <button type="button" className="  p-2  mx-2 my-2  ">
                 <FaEdit
-                  onClick={() => EditTodo(item)}
+                  onClick={() => EditTodo(item.id)}
                   className=" text-3xl text-sky-500 hover:text-sky-700"
                 />
               </button>
@@ -81,7 +84,7 @@ const List = () => {
         );
       })}
       <div className=" flex justify-center">
-        {state.length < 1 || (
+        {todos.length < 1 || (
           <button
             onClick={() => {
               dispatch({ type: Actions.CLEAR_TODO });
