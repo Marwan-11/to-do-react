@@ -19,10 +19,10 @@ const List = () => {
         return (
           <div
             key={item.id}
-            className=" flex justify-center w-8/12 mx-auto  rounded-lg my-10 "
+            className=" flex flex-wrap justify-center w-8/12 mx-auto  rounded-lg my-10 md:max-xl bg-slate-50 md:bg-white "
           >
             <p
-              className={`text-2xl font-bold inline w-3/4 my-auto font-serif ml-4 uppercase rounded-2xl px-5 py-4 ${
+              className={`text-2xl font-bold inline w-fit xl:w-3/5 my-auto font-serif ml-4 uppercase rounded-2xl px-5 py-4 ${
                 item.complete ? ' line-through bg-green-200' : ''
               }`}
             >
