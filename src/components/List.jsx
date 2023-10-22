@@ -35,7 +35,7 @@ const List = () => {
                 onClick={() => changeTodo(item.id)}
               >
                 {!item.complete ? (
-                  <MdDone className=" text-4xl text-green-500 hover:text-green-700" />
+                  <MdDone className=" text-3xl text-green-500 hover:text-green-700" />
                 ) : (
                   <FaUndoAlt className=" text-2xl text-yellow-500 hover:text-yellow-700" />
                 )}
