@@ -1,12 +1,7 @@
-import {
-  useContext,
-  createContext,
-  useReducer,
-  useState,
-  useEffect,
-} from 'react';
+import { useContext, createContext, useReducer, useEffect } from 'react';
 import reducer from '../reducer/ToDoReducer';
 import * as Actions from '../reducer/Actions';
+
 const TodoContext = createContext({});
 
 const initialTodos = {
@@ -39,10 +34,10 @@ export const TodoProvider = ({ children }) => {
   }, [state]);
 
   // edit todo
-  const EditTodo = (t) => {
+  const EditTodo = (id) => {
     dispatch({
       type: Actions.EDIT_TODO,
-      payload: t,
+      payload: id,
     });
   };
 
@@ -50,37 +45,8 @@ export const TodoProvider = ({ children }) => {
     dispatch({ type: Actions.CHANGE_TODO, payload: id });
   };
 
-  const [error, setError] = useState(false);
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    if (state.editing && state.editing?.id) {
-      setValue(state.editing.title);
-    }
-  }, [state.editing]);
-
-  // add and confirm
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (value === '') {
-      setError(true);
-      return;
-    }
-    setError(false);
-    if (state.editing && state.editing?.id) {
-      dispatch({
-        type: Actions.ADD_TODO,
-        payload: { ...state.editing, title: value },
-      });
-      setValue('');
-      return;
-    }
-
-    const id = new Date().getTime().toString();
-    // setId(id + 1);
-    const newToDo = { id, title: value, complete: false };
+  const addTodo = (newToDo) => {
     dispatch({ type: Actions.ADD_TODO, payload: newToDo });
-    setValue('');
   };
 
   return (
@@ -91,10 +57,7 @@ export const TodoProvider = ({ children }) => {
         clearTodos,
         EditTodo,
         changeTodo,
-        setValue,
-        value,
-        handleClick,
-        error,
+        addTodo,
       }}
     >
       {children}

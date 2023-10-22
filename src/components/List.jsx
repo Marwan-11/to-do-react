@@ -21,34 +21,25 @@ const List = () => {
             key={item.id}
             className=" flex justify-center w-8/12 mx-auto  rounded-lg my-10 "
           >
-            {item.complete ? (
-              <p className=" text-2xl font-bold inline w-3/4 my-auto font-serif ml-4 line-through uppercase  bg-green-200 rounded-2xl px-5 py-4  ">
-                {item.title}
-              </p>
-            ) : (
-              <p className=" text-2xl font-bold inline w-3/4 my-auto font-serif ml-4 uppercase rounded-2xl px-5 py-4 ">
-                {item.title}
-              </p>
-            )}
-
+            <p
+              className={`text-2xl font-bold inline w-3/4 my-auto font-serif ml-4 uppercase rounded-2xl px-5 py-4 ${
+                item.complete ? ' line-through bg-green-200' : ''
+              }`}
+            >
+              {item.title}
+            </p>
             <div>
-              {!item.complete ? (
-                <button
-                  type="button"
-                  className="  p-2  mx-2 my-2  "
-                  onClick={() => changeTodo(item.id)}
-                >
+              <button
+                type="button"
+                className="  p-2  mx-2 my-2  "
+                onClick={() => changeTodo(item.id)}
+              >
+                {!item.complete ? (
                   <MdDone className=" text-4xl text-green-500 hover:text-green-700" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="  p-2  mx-2 my-2  "
-                  onClick={() => changeTodo(item.id)}
-                >
+                ) : (
                   <FaUndoAlt className=" text-2xl text-yellow-500 hover:text-yellow-700" />
-                </button>
-              )}
+                )}
+              </button>
               <button type="button" className="  p-2  mx-2 my-2  ">
                 <FaEdit
                   onClick={() => EditTodo(item.id)}

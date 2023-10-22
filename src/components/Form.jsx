@@ -1,13 +1,41 @@
 import { useTodoContext } from '../context/UseToDo';
-
+import { useEffect, useState } from 'react';
 const Form = () => {
   const {
-    handleClick,
-    setValue,
     state: { editing },
-    value,
-    error,
+    addTodo,
   } = useTodoContext();
+
+  const [error, setError] = useState(false);
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (editing && editing?.id) {
+      setValue(editing.title);
+    }
+  }, [editing]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (value === '') {
+      setError(true);
+      return;
+    }
+    setError(false);
+    if (editing && editing?.id) {
+      addTodo({ ...editing, title: value });
+      setValue('');
+      return;
+    }
+
+    const id = new Date().getTime().toString();
+
+    const newToDo = { id, title: value, complete: false };
+
+    addTodo(newToDo);
+
+    setValue('');
+  };
 
   return (
     <form>
