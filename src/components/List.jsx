@@ -35,7 +35,7 @@ const List = () => {
                 onClick={() => changeTodo(item.id)}
               >
                 {!item.complete ? (
-                  <MdDone className=" text-3xl text-green-500 hover:text-green-700" />
+                  <MdDone className=" text-2xl text-green-500 hover:text-green-700" />
                 ) : (
                   <FaUndoAlt className=" text-2xl text-yellow-500 hover:text-yellow-700" />
                 )}
@@ -43,7 +43,7 @@ const List = () => {
               <button type="button" className="  p-2  mx-2 my-2  ">
                 <FaEdit
                   onClick={() => EditTodo(item.id)}
-                  className=" text-3xl text-sky-500 hover:text-sky-700"
+                  className=" text-2xl text-sky-500 hover:text-sky-700"
                 />
               </button>
               <button type="button" className="  p-2  mx-2 my-2  ">
@@ -51,7 +51,7 @@ const List = () => {
                   onClick={() =>
                     dispatch({ type: Actions.DELETE_TODO, payload: item.id })
                   }
-                  className=" text-3xl  text-red-500 hover:text-red-700"
+                  className=" text-2xl  text-red-500 hover:text-red-700"
                 />
               </button>
             </div>
