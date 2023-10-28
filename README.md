@@ -1,8 +1,47 @@
-# React + Vite
+<h1 align="center">ToDO list</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+<p align="center">A ToDO list using React + Vite +Tailwind project</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+## Links
+
+- [Repo](https://github.com/Marwan-11/to-do-react.git)
+
+- [Live](https://to-do-react-8d6ozk1ew-marwan-yahias-projects.vercel.app/)
+
+## Screenshots
+
+![](/reactToDo.png)
+
+
+## Built With
+
+
+- JS
+- Vite
+- Tailwind
+
+## Author
+
+**Marwan Yahia**
+
+- [Profile](https://github.com/Marwan-11 "Marwan Yahia")
+- [Email](mailto:marwanyahia151@gmail.com?subject=Hi "Hi!")
+
+
+## 🤝 Support
+
+Contributions, issues, and feature requests are welcome!
+
+Give a ⭐️ if you like this project!
+
+
+
+
+
+
+
+
+
