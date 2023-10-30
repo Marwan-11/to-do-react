@@ -19,8 +19,9 @@
 ## Built With
 
 
-- JS
+- React
 - Vite
+- JS
 - Tailwind
 
 ## Author
