@@ -1,7 +1,7 @@
 <h1 align="center">React To-Do List with Vite and Tailwind CSS</h1>
 
 
-<p align="center">A modern and highly performant To-Do List application using React as the front-end library, Vite as the build tool, and Tailwind CSS for responsive and stylish UI components. This To-Do List app offers a seamless and visually appealing way for users to manage their tasks, and it showcases my skills in building web applications with cutting-edge technologies.</p>
+<p align="center">A To-Do List application using React, Vite, and Tailwind CSS for responsive and stylish UI components. This To-Do List app offers a way for users to manage their tasks.</p>
 
 
 
